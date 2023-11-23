@@ -1,0 +1,26 @@
+image: atlassian/default-image:3
+
+pipelines:
+  branches:
+    develop:
+      - step:
+          name: Deploy Code
+          caches:
+            - composer
+          script:
+            # Start the SSH Agent
+            - eval $(ssh-agent -s)
+            # Custom message
+            - echo "Deployig code..."
+            # SSH into your server (replace with your server details)
+            - ssh -i $BITBUCKET_CLONE_DIR/id_rsa $BRAVO_HOST "bash $BRAVO_DEPLOY ondaq; $BRAVO_COMPOSER;  "
+
+      - step:
+          name: Create Build
+          caches:
+            - node
+          script:
+            # Custom message
+            - echo "Creating build..."
+            # SSH into your server (replace with your server details)
+            - ssh -i $BITBUCKET_CLONE_DIR/id_rsa $BRAVO_HOST "bash $BRAVO_NPM; $BRAVO_BUILD; "

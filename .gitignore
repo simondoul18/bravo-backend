@@ -1,0 +1,18 @@
+### Laravel template
+/vendor/
+composer.phar
+.env
+
+# Chunk files
+/public/assets/app/js/
+/public/assets/app/css/
+/public/assets/app/img/
+/public/assets/app/index.html
+/resources/views/app.blade.php
+
+# DB CLi
+/public/PMA_2021/
+
+# Dependency directory
+
+#
